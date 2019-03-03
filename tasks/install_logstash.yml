@@ -1,0 +1,10 @@
+---
+  - name: Installing Logstash
+    apt: name=logstash
+
+  - name: Enabling and starting logstash as a systemd service
+    systemd:
+      enabled: yes
+      name: logstash
+      daemon_reload: yes
+      state: started

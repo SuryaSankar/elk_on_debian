@@ -1,0 +1,10 @@
+---
+  - name: Installing kibana
+    apt: name=kibana
+
+  - name: Enabling and starting kibana as a systemd service
+    systemd:
+      enabled: yes
+      name: kibana
+      daemon_reload: yes
+      state: started

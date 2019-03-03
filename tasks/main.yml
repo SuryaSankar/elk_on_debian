@@ -1,0 +1,12 @@
+- hosts: elk_server
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Install elasticsearch
+      include: install_elasticsearch.yml
+
+    - name: Install kibana
+      include: install_kibana.yml
+
+    - name: Install logstash
+      include: install_logstash.yml
