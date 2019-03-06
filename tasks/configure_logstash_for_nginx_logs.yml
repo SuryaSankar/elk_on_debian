@@ -1,0 +1,19 @@
+---
+- name: Download GeoIP DB zip
+  get_url:
+    url: http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz
+    dest: /etc/logstash/GeoLite2-City.mmdb.gz
+
+- name: Unzip GeoIP DB zip
+  command: gunzip GeoLite2-City.mmdb.gz
+  args:
+    chdir: /etc/logstash
+    creates: /etc/logstash/GeoLite2-City.mmdb
+
+- name: Modify logstash.yml
+  include: edit_logstash.yml
+
+- name: Copy logstash conf for nginx logs
+  template:
+    src: ../templates/logstash-nginx-es.conf.j2
+    dest: /etc/logstash/conf.d/logstash-nginx-es.conf

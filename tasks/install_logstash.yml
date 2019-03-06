@@ -1,10 +1,13 @@
 ---
-  - name: Installing Logstash
-    apt: name=logstash
+- name: Installing Logstash
+  apt: name=logstash
 
-  - name: Enabling and starting logstash as a systemd service
-    systemd:
-      enabled: yes
-      name: logstash
-      daemon_reload: yes
-      state: started
+- name: Configure logstash to receive nginx filebeat logs
+  include: configure_logstash_for_nginx_logs.yml
+
+- name: Enabling and starting logstash as a systemd service
+  systemd:
+    enabled: yes
+    name: logstash
+    daemon_reload: yes
+    state: started

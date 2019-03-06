@@ -1,0 +1,44 @@
+---
+# - name: Installing Openssl
+#   apt: name=openssl
+
+# - name: Installing pip
+#   apt: name=python-pip
+
+  # - name: ensure pyopenssl is installed
+  #   pip:
+  #     name: pyopenssl
+  #     state: latest
+  #     extra_args: --no-cache-dir
+
+- name: Creates /etc/ssl/elk-certs
+  file:
+    path: /etc/ssl/elk-certs
+    state: directory
+
+- name: Copy ssl cert
+  copy:
+    src: "{{elk_ssl_cert_path}}"
+    dest: /etc/ssl/elk-certs/{{elk_server_fqdn}}.crt
+
+- name: Copy ssl private key
+  copy:
+    src: "{{elk_ssl_key_path}}"
+    dest: /etc/ssl/elk-certs/{{elk_server_fqdn}}.key
+
+  # - name: Generate private key
+  #   openssl_privatekey:
+  #     path: /etc/ssl/elk-certs/{{fqdn}}.pem
+
+  # - name: Generate certificate csr
+  #   openssl_csr:
+  #     path: /etc/ssl/elk-certs/{{fqdn}}.csr
+  #     privatekey_path: /etc/ssl/elk-certs/{{fqdn}}.pem
+  #     common_name: "{{fqdn}}"
+
+  # - name: Install Openssl certificate
+  #   openssl_certificate:
+  #     path: /etc/ssl/elk-certs/{{fqdn}}.crt
+  #     privatekey_path: /etc/ssl/elk-certs/{{fqdn}}.pem
+  #     csr_path: /etc/ssl/elk-certs/{{fqdn}}.csr
+  #     provider: selfsigned

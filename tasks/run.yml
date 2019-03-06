@@ -1,0 +1,4 @@
+- hosts: elk_server
+  tasks:
+    - name: Installing ELK stack
+      include: main.yml

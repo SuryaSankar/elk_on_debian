@@ -1,30 +1,30 @@
 ---
-  - name: run apt upgrade
-    apt: update_cache=yes
+- name: run apt upgrade
+  apt: update_cache=yes
 
-  - name: Ensuring openjdk is installed
-    apt: name=openjdk-8-jre
+- name: Ensuring openjdk is installed
+  apt: name=openjdk-8-jre
 
-  - name: Installing apt key
-    apt_key:
-      url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-      state: present
+- name: Installing apt key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
 
-  - name: Installing prerequisites
-    apt: name=apt-transport-https
+- name: Installing prerequisites
+  apt: name=apt-transport-https
 
-  - name: Saving elastic repository definition to sources list
-    apt_repository:
-      repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
-      state: present
-      filename: elastic-6.x
+- name: Saving elastic repository definition to sources list
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
+    state: present
+    filename: elastic-6.x
 
-  - name: Installing Elasticsearch
-    apt: name=elasticsearch
+- name: Installing Elasticsearch
+  apt: name=elasticsearch
 
-  - name: Enabling and starting Elasticsearch as a systemd service
-    systemd:
-      enabled: yes
-      name: elasticsearch
-      daemon_reload: yes
-      state: started
+- name: Enabling and starting Elasticsearch as a systemd service
+  systemd:
+    enabled: yes
+    name: elasticsearch
+    daemon_reload: yes
+    state: started
