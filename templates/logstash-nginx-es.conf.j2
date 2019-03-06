@@ -36,8 +36,8 @@ filter {
 output {
  elasticsearch {
    hosts => ["localhost:9200"]
-   index => "weblogs-%{+YYYY.MM.dd}"
-   document_type => "nginx_logs"
+   manage_template => false
+   index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
  }
  stdout { codec => rubydebug }
 }
