@@ -1,6 +1,6 @@
 - hosts: elk_server
   vars:
-    nginx_access_log_pattern: '%{IPORHOST:remote_addr} - %{USERNAME:remote_user} \[%{HTTPDATE:timestamp}\] \"%{WORD:method} %{URIPATHPARAM:request_uri} HTTP/%{NUMBER:httpversion}\" %{INT:response_status} (?:%{NUMBER:response_bytes_sent}|-) \"%{DATA:http_referrer}\" \"%{DATA:http_user_agent}\"%{GREEDYDATA:extra_data}'
+    nginx_access_log_pattern: '%{IPORHOST:remote_addr} - %{USERNAME:remote_user} \[%{HTTPDATE:timestamp}\] \"%{WORD:method} %{URIPATHPARAM:request_uri} HTTP/%{NUMBER:httpversion}\" %{INT:response_status} (?:%{NUMBER:response_bytes_sent}|-) \"%{DATA:http_referrer}\" \"%{DATA:http_user_agent}\" %{QS:forwarded_for_ips} %{QS:host} sn=%{QS:server_name} rt=%{NUMBER:request_time} ua=%{QS:upstream_address} us=\"%{INT:upstream_status}\" ut=(?:%{NUMBER:upstream_response_time}|-) ul=(?:%{INT:upstream_response_length}|-) cs=(?:%{INT:upstream_cache_status}|-) cfip=\"(?:%{IPORHOST:visitorip}|-)\" userid=%{QS:userid} sessid=%{QS:sessid}'
   tasks:
     - name: Installing ELK stack
       include: main.yml
