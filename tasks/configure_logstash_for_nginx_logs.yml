@@ -13,7 +13,17 @@
 - name: Modify logstash.yml
   include: edit_logstash.yml
 
-- name: Copy logstash conf for nginx logs
+- name: Creates /etc/logstash/patterns
+  file:
+    path: /etc/logstash/patterns
+    state: directory
+
+- name: Create nginx access log pattern
+  template:
+    src: ../templates/nginx.pattern.j2
+    dest: /etc/logstash/patterns/nginx.pattern
+
+- name: Create logstash conf for nginx logs
   template:
     src: ../templates/logstash-nginx-es.conf.j2
     dest: /etc/logstash/conf.d/logstash-nginx-es.conf

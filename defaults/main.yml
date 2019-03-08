@@ -1,2 +1,4 @@
 ---
 # defaults file for elk_filebeat_nginx_role
+
+nginx_access_log_pattern: "%{IPORHOST:remote_addr} - %{USERNAME:remote_user} \[%{HTTPDATE:time_local}\] \"%{DATA:request}\" %{INT:status} %{NUMBER:bytes_sent} \"%{DATA:http_referer}\" \"%{DATA:http_user_agent}\""
