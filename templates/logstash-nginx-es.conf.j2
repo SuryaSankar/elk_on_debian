@@ -13,7 +13,7 @@ filter {
   if [fields][log_type] == "nginx_access" {
     grok {
       patterns_dir => "/etc/logstash/patterns"
-      match => { "message" => "%{NGINX_ACCESS}" }
+      match => ["message", "%{NGINX_ACCESS}"]
       overwrite => [ "message" ]
       remove_tag => [ "_grokparsefailure" ]
       add_tag => [ "nginx_access" ]
