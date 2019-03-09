@@ -10,7 +10,6 @@ input {
 }
 
 filter {
-  if [fields][log_type] == "nginx_access" {
     grok {
       patterns_dir => "/etc/logstash/patterns"
       match => ["message", "%{NGINX_ACCESS}"]
@@ -33,8 +32,7 @@ filter {
     }
     useragent {
       source => "http_user_agent"
-    } 
-  }
+    }
 }
 
 output {
