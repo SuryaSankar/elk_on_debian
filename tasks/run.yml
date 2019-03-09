@@ -1,6 +1,6 @@
 - hosts: elk_server
   vars:
-    nginx_access_log_pattern: '%{IPORHOST:remote_addr}%{GREEDYDATA:extra_data}'
+    nginx_access_log_pattern: '%{GREEDYDATA:extra_data}'
   tasks:
     - name: Installing ELK stack
       include: main.yml
