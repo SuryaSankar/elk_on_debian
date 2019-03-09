@@ -10,11 +10,31 @@ input {
 }
 
 filter {
+  if [fields][log_type] == "nginx_access" {
     grok {
-      match => ["message", "%{IPORHOST:remote_addr}%{GREEDYDATA:extra_data}"]
+      patterns_dir => "/etc/logstash/patterns"
+      match => { "message" => "%{NGINX_ACCESS}" }
+      overwrite => [ "message" ]
       remove_tag => [ "_grokparsefailure" ]
       add_tag => [ "nginx_access" ]
     }
+    mutate {
+      convert => ["response_status", "integer"]
+      convert => ["response_bytes_sent", "integer"]
+    }
+    geoip {
+      source => "remote_addr"
+      target => "geoip"
+      add_tag => [ "nginx-geoip" ]
+    }
+    date {
+      match => [ "timestamp" , "dd/MMM/YYYY:HH:mm:ss Z" ]
+      remove_field => [ "timestamp" ]
+    }
+    useragent {
+      source => "http_user_agent"
+    } 
+  }
 }
 
 output {
