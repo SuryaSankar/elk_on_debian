@@ -15,17 +15,9 @@ filter {
       remove_tag => [ "_grokparsefailure" ]
       add_tag => [ "nginx_access" ]
     }
-    geoip {
-      source => "remote_addr"
-      target => "geoip"
-      add_tag => [ "nginx-geoip" ]
-    }
     date {
       match => [ "timestamp" , "dd/MMM/YYYY:HH:mm:ss Z" ]
       remove_field => [ "timestamp" ]
-    }
-    useragent {
-      source => "http_user_agent"
     }
 }
 
