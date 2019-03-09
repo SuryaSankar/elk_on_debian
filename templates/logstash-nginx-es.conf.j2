@@ -12,14 +12,10 @@ input {
 filter {
     grok {
       patterns_dir => "/etc/logstash/patterns"
-      match => ["message", '%{GREEDYDATA:extra_data}']
+      match => ["message", "'%{IPORHOST:remote_addr} - %{USERNAME:remote_user} \[%{HTTPDATE:timestamp}\]%{GREEDYDATA:extra_data}"]
       overwrite => [ "message" ]
       remove_tag => [ "_grokparsefailure" ]
       add_tag => [ "nginx_access" ]
-    }
-    mutate {
-      convert => ["response_status", "integer"]
-      convert => ["response_bytes_sent", "integer"]
     }
     geoip {
       source => "remote_addr"
