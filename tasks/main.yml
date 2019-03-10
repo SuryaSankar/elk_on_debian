@@ -9,12 +9,17 @@
   become_method: sudo
   include: install_elasticsearch.yml
 
+- name: Install logstash
+  become: yes
+  become_method: sudo
+  include: install_logstash.yml
+
 - name: Install kibana
   become: yes
   become_method: sudo
   include: install_kibana.yml
 
-- name: Install logstash
+- name: Setup nginx for kibana
   become: yes
   become_method: sudo
-  include: install_logstash.yml
+  include: setup_nginx_for_kibana.yml

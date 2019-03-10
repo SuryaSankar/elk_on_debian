@@ -1,0 +1,19 @@
+---
+- name: Installing nginx
+  apt: name=nginx
+
+- name: Create nginx conf for kibana
+  template:
+    src: ../templates/nginx_kibana.conf.j2
+    dest: /etc/nginx/sites-available/kibana.conf
+
+- name: Add kibana site to enabled sites
+  file:
+    src: /etc/nginx/sites-available/kibana.conf
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
