@@ -10,6 +10,11 @@
     chdir: /etc/logstash
     creates: /etc/logstash/GeoLite2-City.mmdb
 
+- name: Rename the default logstash-sample.conf
+  command: mv /etc/logstash/logstash-sample.conf /etc/logstash/logstash-sample.backupconf
+  args:
+    removes: /etc/logstash/logstash-sample.conf
+
 - name: Modify logstash.yml
   include: edit_logstash.yml
 
