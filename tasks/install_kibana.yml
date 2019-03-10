@@ -2,6 +2,24 @@
 - name: Installing kibana
   apt: name=kibana
 
+- name: Set server.ssl.enabled in kibana.yml
+  lineinfile:
+    path: /etc/kibana/kibana.yml
+    regexp: '^#?\s?server.ssl.enabled:.*$'
+    line: 'server.ssl.enabled: true'
+  
+- name: Set server.ssl.key in kibana.yml
+  lineinfile:
+    path: /etc/kibana/kibana.yml
+    regexp: '^#?\s?server.ssl.key:.*$'
+    line: 'server.ssl.key: /etc/ssl/elk-certs/{{elk_server_fqdn}}.key'
+
+- name: Set server.ssl.certificate in kibana.yml
+  lineinfile:
+    path: /etc/kibana/kibana.yml
+    regexp: '^#?\s?server.ssl.certificate:.*$'
+    line: 'server.ssl.certificate: /etc/ssl/elk-certs/{{elk_server_fqdn}}.crt'
+
 - name: Enabling and starting kibana as a systemd service
   systemd:
     enabled: yes
