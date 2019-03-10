@@ -6,7 +6,7 @@ server {
   ssl_certificate_key /etc/ssl/elk-certs/{{elk_server_fqdn}}.key;
  
   location / {
-      proxy_pass https://127.0.0.1:5601;
+      proxy_pass http://127.0.0.1:5601;
       proxy_http_version 1.1;
       proxy_set_header Upgrade \$http_upgrade;
       proxy_set_header Connection 'upgrade';
