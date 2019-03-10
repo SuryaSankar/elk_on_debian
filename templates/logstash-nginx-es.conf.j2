@@ -16,7 +16,7 @@ filter {
       match => { "message" => "%{NGINX_ACCESS}" }
       overwrite => [ "message" ]
       remove_tag => [ "_grokparsefailure" ]
-      add_tag => [ "nginx_access_log" ]
+      add_tag => [ "nginx_access" ]
     }
     mutate {
       convert => ["response_status", "integer"]
