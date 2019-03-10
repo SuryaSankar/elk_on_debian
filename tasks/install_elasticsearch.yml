@@ -27,4 +27,4 @@
     enabled: yes
     name: elasticsearch
     daemon_reload: yes
-    state: started
+    state: restarted

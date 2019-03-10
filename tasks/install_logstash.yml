@@ -10,4 +10,4 @@
     enabled: yes
     name: logstash
     daemon_reload: yes
-    state: started
+    state: restarted

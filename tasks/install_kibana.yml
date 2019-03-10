@@ -7,4 +7,4 @@
     enabled: yes
     name: kibana
     daemon_reload: yes
-    state: started
+    state: restarted
