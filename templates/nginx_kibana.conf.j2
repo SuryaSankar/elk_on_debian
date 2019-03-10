@@ -3,7 +3,7 @@ server {
   server_name {{elk_server_fqdn}};
   ssl on;
   ssl_certificate /etc/ssl/elk-certs/{{elk_server_fqdn}}.crt;
-  ssl_certificate_key /etc/ssl/private/inkmonk_com_2018/inkmonk.key;
+  ssl_certificate_key /etc/ssl/elk-certs/{{elk_server_fqdn}}.key;
  
   location / {
       proxy_pass https://127.0.0.1:5601;
