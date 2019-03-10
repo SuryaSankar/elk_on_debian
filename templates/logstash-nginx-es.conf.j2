@@ -23,10 +23,8 @@ filter {
       convert => ["response_bytes_sent", "integer"]
     }
     geoip {
-      source => "remote_addr"
-      target => "geoip"
+      source => "clientip"
       add_tag => [ "nginx-geoip" ]
-      database => "/etc/logstash/GeoLite2-City.mmdb"
     }
     date {
       match => [ "timestamp" , "dd/MMM/YYYY:HH:mm:ss Z" ]
