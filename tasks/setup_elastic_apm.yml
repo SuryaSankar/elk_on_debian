@@ -1,0 +1,16 @@
+---
+- name: Download APM Server
+  get_url:
+    url: https://artifacts.elastic.co/downloads/apm-server/apm-server-6.6.1-amd64.deb
+    dest: /tmp/apm-server-6.6.1-amd64.deb
+
+- name: Install APM Server
+  apt:
+    deb: /tmp/apm-server-6.6.1-amd64.deb
+
+- name: Enabling and starting logstash as a systemd service
+  systemd:
+    enabled: yes
+    name: apm-server
+    daemon_reload: yes
+    state: started

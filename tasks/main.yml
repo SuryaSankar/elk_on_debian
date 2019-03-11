@@ -23,3 +23,8 @@
   become: yes
   become_method: sudo
   include: setup_nginx_for_kibana.yml
+
+- name: Setup ElasticAPM
+  become: yes
+  become_method: sudo
+  include: setup_elastic_apm.yml
