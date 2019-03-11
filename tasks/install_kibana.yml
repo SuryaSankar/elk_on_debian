@@ -2,11 +2,11 @@
 - name: Installing kibana
   apt: name=kibana
 
-- name: Set server.host to 0.0.0.0 in kibana.yml
-  lineinfile:
-    path: /etc/kibana/kibana.yml
-    regexp: '^#?\s?server.host:.*$'
-    line: 'server.host: "0.0.0.0"'
+# - name: Set server.host to 0.0.0.0 in kibana.yml
+#   lineinfile:
+#     path: /etc/kibana/kibana.yml
+#     regexp: '^#?\s?server.host:.*$'
+#     line: 'server.host: "0.0.0.0"'
 
 # - name: Set server.ssl.enabled in kibana.yml
 #   lineinfile:
