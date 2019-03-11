@@ -5,7 +5,7 @@ server {
   ssl_certificate /etc/ssl/elk-certs/{{elk_server_fqdn}}.crt;
   ssl_certificate_key /etc/ssl/elk-certs/{{elk_server_fqdn}}.key;
 
-  auth_basic “Kibana Dashboard”;
+  auth_basic "Kibana Dashboard";
   auth_basic_user_file /etc/apache2/.htpasswd;
  
   location / {
