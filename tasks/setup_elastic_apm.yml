@@ -8,7 +8,7 @@
   apt:
     deb: /tmp/apm-server-6.6.1-amd64.deb
 
-- name: Enabling and starting logstash as a systemd service
+- name: Enabling and starting apm-server as a systemd service
   systemd:
     enabled: yes
     name: apm-server
