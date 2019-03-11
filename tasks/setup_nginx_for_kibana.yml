@@ -2,6 +2,15 @@
 - name: Installing nginx
   apt: name=nginx
 
+- name: Installing apache2
+  apt: name=apache2
+
+- name: Installing apache2-utils for setting up basic auth
+  apt: name=apache2-utils
+
+- name: Setup htpasswd
+  command: htpasswd -bc /etc/apache2/.htpasswd {{kibana_basic_auth_user}} {{kibana_basic_auth_password}}
+
 - name: Create nginx conf for kibana
   template:
     src: ../templates/nginx_kibana.conf.j2
