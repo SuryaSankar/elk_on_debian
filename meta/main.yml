@@ -1,5 +1,6 @@
 galaxy_info:
   author: suryasankar
+  description: Ansible role for setting up ELK server on a debian machine
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
