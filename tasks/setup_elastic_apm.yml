@@ -14,6 +14,17 @@
 - name: Enabling Real User Monitoring
   command: yq w -i /etc/apm-server/apm-server.yml apm-server.rum.enabled true
 
+- name: Create nginx conf for apm
+  template:
+    src: templates/nginx_apm_server.conf.j2
+    dest: /etc/nginx/sites-available/apm.conf
+
+- name: Add kibana site to enabled sites
+  file:
+    src: /etc/nginx/sites-available/apm.conf
+    dest: /etc/nginx/sites-enabled/apm.conf
+    state: link
+
 - name: Enabling and starting apm-server as a systemd service
   systemd:
     enabled: yes
