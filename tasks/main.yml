@@ -4,6 +4,11 @@
   become_method: sudo
   include: configure_ssl.yml
 
+- name: Install yq for editing yaml
+  become: yes
+  become_method: sudo
+  include: install_yq.yml
+
 - name: Install elasticsearch
   become: yes
   become_method: sudo

@@ -9,16 +9,10 @@
     deb: /tmp/apm-server-6.6.1-amd64.deb
 
 - name: Set secret token in apm-server.yml
-  yedit:
-    src: /etc/apm-server/apm-server.yml
-    key: apm-server.secret_token
-    value: '{{ apm_secret_token }}'
+  command: yq w -i /etc/apm-server/apm-server.yml apm-server.secret_token {{ apm_secret_token }}
 
-- name: Set secret token in apm-server.yml
-  yedit:
-    src: /etc/apm-server/apm-server.yml
-    key: apm-server.rum.enabled
-    value: true
+- name: Enabling Real User Monitoring
+  command: yq w -i /etc/apm-server/apm-server.yml apm-server.rum.enabled true
 
 - name: Enabling and starting apm-server as a systemd service
   systemd:
