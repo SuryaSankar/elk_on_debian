@@ -31,3 +31,8 @@
     name: apm-server
     daemon_reload: yes
     state: started
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
