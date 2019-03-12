@@ -19,12 +19,12 @@
 - name: Copy ssl cert
   copy:
     src: "{{ elk_ssl_cert_path }}"
-    dest: /etc/ssl/elk-certs/{{elk_server_fqdn}}.crt
+    dest: /etc/ssl/elk-certs/{{ elk_server_fqdn }}.crt
 
 - name: Copy ssl private key
   copy:
     src: "{{ elk_ssl_key_path }}"
-    dest: /etc/ssl/elk-certs/{{elk_server_fqdn}}.key
+    dest: /etc/ssl/elk-certs/{{ elk_server_fqdn }}.key
 
   # - name: Generate private key
   #   openssl_privatekey:
