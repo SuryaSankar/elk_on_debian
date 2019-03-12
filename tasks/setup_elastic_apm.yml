@@ -12,7 +12,7 @@
   yedit:
     src: /etc/apm-server/apm-server.yml
     key: apm-server.secret_token
-    value: {{ apm_secret_token }}
+    value: '{{ apm_secret_token }}'
 
 - name: Set secret token in apm-server.yml
   yedit:
