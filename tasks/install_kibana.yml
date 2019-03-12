@@ -13,7 +13,7 @@
 #     path: /etc/kibana/kibana.yml
 #     regexp: '^#?\s?server.ssl.enabled:.*$'
 #     line: 'server.ssl.enabled: true'
-  
+
 # - name: Set server.ssl.key in kibana.yml
 #   lineinfile:
 #     path: /etc/kibana/kibana.yml

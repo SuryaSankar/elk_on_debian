@@ -9,11 +9,11 @@
   apt: name=apache2-utils
 
 - name: Setup htpasswd
-  command: htpasswd -bc /etc/apache2/.htpasswd {{kibana_basic_auth_user}} {{kibana_basic_auth_password}}
+  command: htpasswd -bc /etc/apache2/.htpasswd {{ kibana_basic_auth_user }} {{ kibana_basic_auth_password }}
 
 - name: Create nginx conf for kibana
   template:
-    src: ../templates/nginx_kibana.conf.j2
+    src: templates/nginx_kibana.conf.j2
     dest: /etc/nginx/sites-available/kibana.conf
 
 - name: Add kibana site to enabled sites

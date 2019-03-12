@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   include: configure_ssl.yml
-  
+
 - name: Install elasticsearch
   become: yes
   become_method: sudo
