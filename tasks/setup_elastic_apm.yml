@@ -14,6 +14,9 @@
 - name: Enabling Real User Monitoring
   command: yq w -i /etc/apm-server/apm-server.yml apm-server.rum.enabled true
 
+- name: Enabling Real User Monitoring
+  command: yq w -i /etc/apm-server/apm-server.yml apm-server.rum.allow_origins ['*']
+
 - name: Create nginx conf for apm
   template:
     src: templates/nginx_apm_server.conf.j2
