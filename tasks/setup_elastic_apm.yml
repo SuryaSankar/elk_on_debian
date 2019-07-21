@@ -1,12 +1,9 @@
 ---
-- name: Download APM Server
-  get_url:
-    url: https://artifacts.elastic.co/downloads/apm-server/apm-server-6.6.1-amd64.deb
-    dest: /tmp/apm-server-6.6.1-amd64.deb
-
 - name: Install APM Server
-  apt:
-    deb: /tmp/apm-server-6.6.1-amd64.deb
+  apt: name=apm-server
+
+- name: Configure APM server to start automatically at boot
+  command: update-rc.d apm-server defaults 95 10
 
 - name: Set secret token in apm-server.yml
   command: yq w -i /etc/apm-server/apm-server.yml apm-server.secret_token {{ apm_secret_token }}
@@ -14,7 +11,7 @@
 - name: Enabling Real User Monitoring
   command: yq w -i /etc/apm-server/apm-server.yml apm-server.rum.enabled true
 
-- name: Enabling Real User Monitoring
+- name: Setting allowed origins for RUM
   command: yq w -i /etc/apm-server/apm-server.yml apm-server.rum.allow_origins ['*']
 
 - name: Create nginx conf for apm
@@ -22,7 +19,7 @@
     src: templates/nginx_apm_server.conf.j2
     dest: /etc/nginx/sites-available/apm.conf
 
-- name: Add kibana site to enabled sites
+- name: Add apm site to enabled sites
   file:
     src: /etc/nginx/sites-available/apm.conf
     dest: /etc/nginx/sites-enabled/apm.conf

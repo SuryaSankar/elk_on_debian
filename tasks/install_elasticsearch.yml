@@ -15,9 +15,9 @@
 
 - name: Saving elastic repository definition to sources list
   apt_repository:
-    repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
+    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
     state: present
-    filename: elastic-6.x
+    filename: elastic-7.x
 
 - name: Installing Elasticsearch
   apt: name=elasticsearch
