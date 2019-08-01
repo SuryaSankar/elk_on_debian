@@ -3,7 +3,7 @@ apm-server:
   secret_token: {{ apm_secret_token }}
   rum:
     enabled: true
-    allow_origins: ["{{ application_fqdn }}"]
+    allow_origins: ["{{ site_fqdn }}"]
 ssl:
   enabled: true
   certificate: /etc/ssl/elk-certs/{{apm_server_fqdn}}.crt

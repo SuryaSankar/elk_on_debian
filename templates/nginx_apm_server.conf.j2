@@ -12,5 +12,14 @@ server {
     proxy_set_header Connection 'upgrade';
     proxy_set_header Host $host;
     proxy_cache_bypass $http_upgrade;
+
+    proxy_set_header Access-Control-Request-Headers 'Content-Type';
+    proxy_set_header Access-Control-Request-Method 'POST';
+    proxy_set_header Origin "{{ site_fqdn }}";
+
+    add_header "Access-Control-Allow-Origin"  "{{ site_fqdn }}";
+    add_header "Access-Control-Allow-Methods" "POST, OPTIONS";
+    add_header "Access-Control-Allow-Headers" "Content-Type";
+
   }
 }
